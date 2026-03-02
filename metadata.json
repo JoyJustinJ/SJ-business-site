@@ -1,0 +1,7 @@
+{
+  "name": "S.J Fashions - Premium Men's & Kids' Wear",
+  "description": "Modern and stylish fashion store in Krishnagiri offering a wide variety of traditional and western outfits for men and kids.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
