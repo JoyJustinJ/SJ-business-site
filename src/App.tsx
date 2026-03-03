@@ -76,11 +76,11 @@ const REVIEWS: Review[] = [
 ];
 
 const COLLECTIONS: Collection[] = [
-  { id: '1', title: 'Traditional Elegance', category: 'Traditional Wear', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=800' },
-  { id: '2', title: 'Modern Streetwear', category: 'Western Wear', image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=800' },
-  { id: '3', title: 'Little Champs', category: 'Kids Collection', image: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&q=80&w=800' },
-  { id: '4', title: 'Festive Vibes', category: 'Festive Special', image: 'https://images.unsplash.com/photo-1581338834647-b0fb40704e21?auto=format&fit=crop&q=80&w=800' },
-  { id: '5', title: 'Trending Now', category: 'Trending', image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&q=80&w=800' },
+  { id: '1', title: 'Traditional Elegance', category: 'Traditional Wear', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800' },
+  { id: '2', title: 'Modern Streetwear', category: 'Western Wear', image: 'https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&q=80&w=800' },
+  { id: '3', title: 'Little Champs', category: 'Kids Collection', image: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&q=80&w=800' },
+  { id: '4', title: 'Festive Vibes', category: 'Festive Special', image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&q=80&w=800' },
+  { id: '5', title: 'Trending Now', category: 'Trending', image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=800' },
   { id: '6', title: 'Formal Mastery', category: 'Western Wear', image: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&q=80&w=800' },
 ];
 
@@ -117,7 +117,7 @@ const Navbar = () => {
   return (
     <nav className={cn(
       "fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4",
-      isScrolled ? "glass py-3" : "bg-transparent"
+      isScrolled ? "glass shadow-sm py-3" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex flex-col">
@@ -130,7 +130,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-zinc-300 hover:text-gold transition-colors"
+              className="text-sm font-medium transition-colors" style={{ color: 'var(--color-text-muted)' }}
             >
               {link.name}
             </a>
@@ -142,7 +142,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-zinc-100"
+          className="md:hidden" style={{ color: 'var(--color-text-primary)' }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -162,7 +162,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-lg font-medium text-zinc-300"
+                className="text-lg font-medium" style={{ color: 'var(--color-text-body)' }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
@@ -180,70 +180,104 @@ const Navbar = () => {
 
 const Hero = () => {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const y1 = useTransform(scrollY, [0, 600], [0, 180]);
+  const opacity = useTransform(scrollY, [0, 350], [1, 0]);
 
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax */}
-      <motion.div
-        style={{ y: y1 }}
-        className="absolute inset-0 z-0"
-      >
+      {/* Full-screen clothes background */}
+      <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1920"
-          alt="Premium Fashion"
-          className="w-full h-full object-cover opacity-40"
+          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1920"
+          alt="Men's Fashion Store"
+          className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950"></div>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.22) 45%, rgba(0,0,0,0.60) 100%)' }} />
       </motion.div>
 
+      {/* Centred overlay content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 text-center px-6 max-w-4xl"
+        className="relative z-10 text-center px-6 max-w-3xl mx-auto"
       >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 1, ease: 'easeOut' }}
         >
+          {/* Rating badge */}
           <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full mb-6"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 text-sm font-semibold"
+            style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', border: '1px solid rgba(255,255,255,0.35)', backdropFilter: 'blur(8px)' }}
           >
-            <Star className="w-4 h-4 text-gold fill-gold" />
-            <span className="text-sm font-semibold text-zinc-300">4.6 Rated (56 Reviews)</span>
+            <Star className="w-4 h-4 fill-white text-white" />
+            4.6 Rated &nbsp;·&nbsp; 56 Google Reviews
           </motion.div>
 
+          {/* Brand name */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-5xl md:text-7xl font-display font-black mb-6 leading-tight"
+            className="text-6xl md:text-8xl font-display font-black mb-3 leading-tight text-white drop-shadow-lg"
           >
-            Best All-in-One <br />
-            <span className="text-gold">Fashion Store</span>
+            S.J Fashions
           </motion.h1>
 
+          {/* Tagline */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto"
+            transition={{ delay: 0.35, duration: 0.8 }}
+            className="text-xl md:text-2xl italic font-light mb-4"
+            style={{ color: 'rgba(255,255,255,0.88)' }}
           >
-            Premium Men's & Kids' Wear in Krishnagiri. Traditional, Western, and the latest trendy collections for every occasion.
+            Best All-in-One Fashion Store
           </motion.p>
 
+          {/* Divider */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="w-16 h-0.5 mx-auto mb-6"
+            style={{ background: 'rgba(255,255,255,0.55)' }}
+          />
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.55, duration: 0.8 }}
+            className="text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed"
+            style={{ color: 'rgba(255,255,255,0.78)' }}
+          >
+            Premium Men's &amp; Kids' Wear in Krishnagiri — Traditional, Western, and the latest trendy collections for every occasion.
+          </motion.p>
+
+          {/* CTA buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <a href="#collections" className="btn-gold w-full sm:w-auto flex items-center justify-center gap-2 group">
-              Visit Store Today <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <a
+              href="#collections"
+              className="flex items-center gap-2 px-10 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all hover:scale-105"
+              style={{ background: 'var(--color-btn-primary)', color: '#fff', letterSpacing: '0.08em' }}
+            >
+              SHOP COLLECTIONS <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="tel:09944373272"
+              className="flex items-center gap-2 px-10 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all hover:scale-105"
+              style={{ border: '2px solid rgba(255,255,255,0.65)', color: '#fff', background: 'rgba(255,255,255,0.10)', backdropFilter: 'blur(6px)', letterSpacing: '0.08em' }}
+            >
+              <Phone className="w-4 h-4" /> CALL US
             </a>
           </motion.div>
         </motion.div>
@@ -253,10 +287,10 @@ const Hero = () => {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="w-6 h-10 border-2 border-zinc-700 rounded-full flex justify-center p-1">
-          <div className="w-1 h-2 bg-gold rounded-full"></div>
+        <div className="w-6 h-10 border-2 rounded-full flex justify-center p-1" style={{ borderColor: 'var(--color-border-dark)' }}>
+          <div className="w-1 h-2 rounded-full" style={{ background: 'var(--color-text-primary)' }}></div>
         </div>
       </motion.div>
     </section>
@@ -265,7 +299,7 @@ const Hero = () => {
 
 const About = () => {
   return (
-    <section id="about" className="section-padding bg-zinc-900/50">
+    <section id="about" className="section-padding" style={{ backgroundColor: 'var(--color-cream)' }}>
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -275,7 +309,7 @@ const About = () => {
           <h2 className="text-gold font-display font-bold uppercase tracking-widest text-sm mb-4">Our Story</h2>
           <h3 className="text-4xl md:text-5xl font-display font-extrabold mb-8">Quality + Style + Comfort</h3>
 
-          <div className="space-y-6 text-zinc-400 text-lg leading-relaxed">
+          <div className="space-y-6 text-lg leading-relaxed" style={{ color: 'var(--color-text-body)' }}>
             <p>
               At S.J Fashions, we believe that fashion is a reflection of your personality. Located in the heart of Krishnagiri, we've been serving our community with the finest men's and kids' wear for years.
             </p>
@@ -287,11 +321,11 @@ const About = () => {
           <div className="grid grid-cols-2 gap-8 mt-12">
             <div className="flex flex-col">
               <span className="text-4xl font-display font-black text-gold mb-1">Wide</span>
-              <span className="text-zinc-500 text-sm uppercase font-bold tracking-tighter">Variety</span>
+              <span className="text-sm uppercase font-bold tracking-tighter" style={{ color: 'var(--color-text-muted)' }}>Variety</span>
             </div>
             <div className="flex flex-col">
               <span className="text-4xl font-display font-black text-gold mb-1">Best</span>
-              <span className="text-zinc-500 text-sm uppercase font-bold tracking-tighter">Pricing</span>
+              <span className="text-sm uppercase font-bold tracking-tighter" style={{ color: 'var(--color-text-muted)' }}>Pricing</span>
             </div>
           </div>
         </motion.div>
@@ -314,15 +348,15 @@ const About = () => {
           {/* Floating Card */}
           <div className="absolute -bottom-10 -left-10 glass p-6 rounded-2xl max-w-xs hidden lg:block">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-gold flex items-center justify-center">
-                <Users className="text-zinc-950 w-6 h-6" />
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'var(--color-btn-primary)' }}>
+                <Users className="text-white w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-zinc-500 font-bold uppercase">Happy Customers</p>
+                <p className="text-xs font-bold uppercase" style={{ color: 'var(--color-text-muted)' }}>Happy Customers</p>
                 <p className="text-xl font-display font-black">5000+</p>
               </div>
             </div>
-            <p className="text-sm text-zinc-400 italic">"Best all-in one fashion for mens - quality, style, comfort and great service"</p>
+            <p className="text-sm italic" style={{ color: 'var(--color-text-body)' }}>"Best all-in one fashion for mens - quality, style, comfort and great service"</p>
           </div>
         </motion.div>
       </div>
@@ -355,7 +389,7 @@ const Collections = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-8 w-full">
                 <p className="text-gold text-xs font-bold uppercase tracking-widest mb-2">{item.category}</p>
                 <h4 className="text-2xl font-display font-bold text-white group-hover:text-gold transition-colors">{item.title}</h4>
@@ -370,7 +404,7 @@ const Collections = () => {
 
 const Reviews = () => {
   return (
-    <section id="reviews" className="section-padding bg-zinc-900/30 overflow-hidden">
+    <section id="reviews" className="section-padding overflow-hidden" style={{ backgroundColor: 'var(--color-bg-section)' }}>
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
@@ -378,19 +412,19 @@ const Reviews = () => {
             <h3 className="text-4xl md:text-5xl font-display font-extrabold">What Our Customers Say</h3>
           </div>
           <div className="flex items-center gap-6 glass p-4 rounded-2xl">
-            <div className="text-center border-r border-white/10 pr-6">
+            <div className="text-center pr-6" style={{ borderRight: '1px solid var(--color-border)' }}>
               <p className="text-3xl font-display font-black text-gold">4.6</p>
               <div className="flex text-gold">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-gold" />)}
               </div>
             </div>
             <div>
-              <p className="text-sm font-bold text-zinc-300">56 Google Reviews</p>
+              <p className="text-sm font-bold" style={{ color: 'var(--color-text-primary)' }}>56 Google Reviews</p>
               <a
                 href="https://www.google.com/maps/search/?api=1&query=S.J+Fashions+Krishnagiri"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-zinc-500 hover:text-gold underline"
+                className="text-xs underline" style={{ color: 'var(--color-text-muted)' }}
               >
                 Write a Review
               </a>
@@ -398,32 +432,31 @@ const Reviews = () => {
           </div>
         </div>
 
-        <div className="carousel-wrapper">
-          <div className="carousel-inner" style={{ '--quantity': REVIEWS.length } as React.CSSProperties}>
-            {REVIEWS.map((review, index) => (
-              <div
-                key={review.name}
-                className="carousel-card"
-                style={{ '--index': index } as React.CSSProperties}
-              >
-                <div className="glass p-8 rounded-3xl h-full flex flex-col gold-border shadow-2xl shadow-gold/5">
-                  <div className="flex text-gold mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={cn("w-4 h-4", i < review.rating ? "fill-gold" : "text-zinc-700")}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-zinc-300 mb-6 italic leading-relaxed text-sm flex-grow">"{review.text}"</p>
-                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
-                    <span className="font-display font-bold text-zinc-100 text-sm">{review.name}</span>
-                    <span className="text-[10px] text-zinc-500">{review.date}</span>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {REVIEWS.map((review, index) => (
+            <motion.div
+              key={review.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.08 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-2xl flex flex-col gold-border" style={{ background: 'var(--color-bg-card)' }}
+            >
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={cn("w-4 h-4", i < review.rating ? "fill-[var(--color-accent)] text-[var(--color-accent)]" : "text-[var(--color-border)]")}
+                  />
+                ))}
               </div>
-            ))}
-          </div>
+              <p className="mb-6 italic leading-relaxed text-sm flex-grow" style={{ color: 'var(--color-text-body)' }}>&#8220;{review.text}&#8221;</p>
+              <div className="flex items-center justify-between mt-auto pt-6" style={{ borderTop: '1px solid var(--color-border)' }}>
+                <span className="font-display font-bold text-sm" style={{ color: 'var(--color-text-primary)' }}>{review.name}</span>
+                <span className="text-[10px]" style={{ color: 'var(--color-text-faint)' }}>{review.date}</span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -450,10 +483,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-lg mb-2">Location</h4>
-                  <p className="text-zinc-400 leading-relaxed">
+                  <p className="leading-relaxed" style={{ color: 'var(--color-text-body)' }}>
                     Opposite BSNL Office, LIG Colony, Londenpet,<br />
                     Krishnagiri, Tamil Nadu – 635001<br />
-                    <span className="text-xs text-zinc-500 font-bold uppercase mt-1 block">SIDCO Industrial Estate | G6J5+89</span>
+                    <span className="text-xs font-bold uppercase mt-1 block" style={{ color: 'var(--color-text-faint)' }}>SIDCO Industrial Estate | G6J5+89</span>
                   </p>
                 </div>
               </div>
@@ -464,10 +497,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-lg mb-2">Contact</h4>
-                  <p className="text-zinc-400 mb-4">099443 73272</p>
+                  <p className="mb-4" style={{ color: 'var(--color-text-body)' }}>099443 73272</p>
                   <div className="flex gap-4">
                     <a href="tel:09944373272" className="btn-gold py-2 px-6 text-sm">Call Now</a>
-                    <a href="https://wa.me/919944373272" target="_blank" rel="noopener noreferrer" className="glass py-2 px-6 rounded-full text-sm font-bold flex items-center gap-2">
+                    <a href="https://wa.me/919944373272" target="_blank" rel="noopener noreferrer" className="py-2 px-6 rounded-full text-sm font-bold flex items-center gap-2" style={{ background: 'var(--color-bg-subtle)', color: 'var(--color-text-primary)', border: '1px solid var(--color-border)' }}>
                       <MessageCircle className="w-4 h-4 text-emerald-500" /> WhatsApp
                     </a>
                   </div>
@@ -483,8 +516,8 @@ const Contact = () => {
                   <div className="space-y-2 max-w-xs">
                     {BUSINESS_HOURS.map((item) => (
                       <div key={item.day} className="flex justify-between text-sm">
-                        <span className="text-zinc-500">{item.day}</span>
-                        <span className="text-zinc-300 font-medium">{item.hours}</span>
+                        <span style={{ color: 'var(--color-text-muted)' }}>{item.day}</span>
+                        <span className="font-medium" style={{ color: 'var(--color-text-primary)' }}>{item.hours}</span>
                       </div>
                     ))}
                   </div>
@@ -517,26 +550,26 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-zinc-950 border-t border-white/5 py-12 px-6">
+    <footer className="border-t py-12 px-6" style={{ backgroundColor: 'var(--color-text-primary)', borderTopColor: 'var(--color-border-dark)' }}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex flex-col items-center md:items-start">
           <span className="text-2xl font-display font-black text-gold">S.J FASHIONS</span>
-          <p className="text-zinc-500 text-sm mt-2">© 2024 S.J Fashions. All rights reserved.</p>
+          <p className="text-sm mt-2" style={{ color: 'var(--color-border)' }}>© 2024 S.J Fashions. All rights reserved.</p>
         </div>
 
         <div className="flex gap-6">
-          <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-gold transition-colors">
+          <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: '#ccc' }}>
             <Instagram className="w-5 h-5" />
           </a>
-          <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-gold transition-colors">
+          <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: '#ccc' }}>
             <Facebook className="w-5 h-5" />
           </a>
-          <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-gold transition-colors">
+          <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: '#ccc' }}>
             <MessageCircle className="w-5 h-5" />
           </a>
         </div>
 
-        <div className="text-zinc-500 text-xs text-center md:text-right">
+        <div className="text-xs text-center md:text-right" style={{ color: 'var(--color-border)' }}>
           <p>Opposite BSNL Office, LIG Colony, Londenpet</p>
           <p>Krishnagiri, Tamil Nadu – 635001</p>
         </div>
@@ -562,7 +595,7 @@ const FloatingActions = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         href="tel:09944373272"
-        className="w-14 h-14 bg-gold rounded-full flex items-center justify-center shadow-lg shadow-gold/20 text-zinc-950 md:hidden"
+        className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-white md:hidden" style={{ background: 'var(--color-btn-primary)', boxShadow: '0 4px 24px rgba(0,0,0,0.25)' }}
       >
         <Phone className="w-7 h-7" />
       </motion.a>
@@ -586,7 +619,7 @@ export default function App() {
         {isLoading && (
           <motion.div
             key="loader"
-            className="fixed inset-0 z-[100] bg-zinc-950 flex items-center justify-center"
+            className="fixed inset-0 z-[100] flex items-center justify-center" style={{ backgroundColor: 'var(--color-bg-primary)' }}
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
