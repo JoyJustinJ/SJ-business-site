@@ -189,6 +189,7 @@ const Hero = () => {
       <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
         <img
           src="/heroo-bg.jpg"
+
           alt="Men's Fashion Store"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
