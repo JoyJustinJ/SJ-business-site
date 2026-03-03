@@ -188,7 +188,7 @@ const Hero = () => {
       {/* Full-screen clothes background */}
       <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
         <img
-          src="/hero-bg.jpg"
+          src="/heroo-bg.jpg"
           alt="Men's Fashion Store"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
