@@ -44,7 +44,7 @@ const REVIEWS: Review[] = [
     date: "2 weeks ago"
   },
   {
-    name: "Suresh Raina",
+    name: "Suresh ",
     rating: 5,
     text: "Best all-in one fashion for mens - quality, style, comfort and great service. The kids collection is also very trendy.",
     date: "1 month ago"
@@ -56,7 +56,7 @@ const REVIEWS: Review[] = [
     date: "3 months ago"
   },
   {
-    name: "Vijay Sethupathi",
+    name: "Vijay kanapathi",
     rating: 5,
     text: "The traditional wear collection is outstanding. I bought a dhoti set for a wedding and the quality was top-notch.",
     date: "4 months ago"
@@ -188,7 +188,7 @@ const Hero = () => {
       {/* Full-screen clothes background */}
       <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1920"
+          src="/hero-bg.jpg"
           alt="Men's Fashion Store"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
